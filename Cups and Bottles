@@ -1,0 +1,58 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace Cups_and_Bottles
+{
+    class Program
+    {
+        static void Main()
+        {
+            int[] cups = Console.ReadLine().Split().Select(int.Parse).ToArray();
+            int[] bottles = Console.ReadLine().Split().Select(int.Parse).ToArray();
+
+            Queue<int> allCups = new Queue<int>(cups);
+            Stack<int> allBottles = new Stack<int>(bottles);
+
+            int wastedWater = 0;
+            bool isLeft = false;
+            int leftCup = 0;
+
+            while (allCups.Any() && allBottles.Any())
+            {
+                if (allBottles.Any() && allBottles.Peek() >= allCups.Peek())
+                {
+                    wastedWater += allBottles.Pop() - allCups.Dequeue();
+                }
+                else if (allBottles.Any() && allBottles.Peek() < allCups.Peek())
+                {
+                    isLeft = true;
+                    leftCup = allCups.Dequeue() - allBottles.Pop();
+                }
+
+                if (isLeft)
+                {
+                    while (leftCup > 0 && allBottles.Any())
+                    {
+                        leftCup -= allBottles.Pop();
+                    }
+
+                    wastedWater += Math.Abs(leftCup);
+                }
+
+                isLeft = false;
+            }
+
+            if (!allCups.Any())
+            {
+                Console.WriteLine($"Bottles: {string.Join(" ", allBottles)}");
+            }
+            else if (!allBottles.Any())
+            {
+                Console.WriteLine($"Cups: {string.Join(" ", allCups)}");
+            }
+
+            Console.WriteLine($"Wasted litters of water: {wastedWater}");
+        }
+    }
+}
