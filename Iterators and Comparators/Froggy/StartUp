@@ -1,0 +1,15 @@
+using System;
+using System.Linq;
+
+namespace Froggy
+{
+    class StartUp
+    {
+        static void Main(string[] args)
+        {
+            int[] numbers = Console.ReadLine().Split(new char[] { ',', ' ' }, StringSplitOptions.RemoveEmptyEntries).Select(int.Parse).ToArray();
+            Lake<int> stones = new Lake<int>(numbers);
+            Console.WriteLine(string.Join(", ", stones));
+        }
+    }
+}
