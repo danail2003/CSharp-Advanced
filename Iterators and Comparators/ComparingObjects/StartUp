@@ -1,0 +1,52 @@
+using System;
+using System.Collections.Generic;
+
+namespace ComparingObjects
+{
+    class StartUp
+    {
+        static void Main()
+        {
+            string command = Console.ReadLine();
+            List<Person> people = new List<Person>();
+
+            while (command != "END")
+            {
+                string[] token = command.Split();
+
+                Person person = new Person(token[0], int.Parse(token[1]), token[2]);
+                people.Add(person);
+
+                command = Console.ReadLine();
+            }
+
+            int number = int.Parse(Console.ReadLine()) - 1;
+
+            Person currentPerson = people[number];
+
+            int equal = 0;
+            int nonEqual = 0;
+
+            foreach (var person in people)
+            {
+                if(person.CompareTo(currentPerson) == 0)
+                {
+                    equal++;
+                }
+                else
+                {
+                    nonEqual++;
+                }
+            }
+
+            if (equal > 1)
+            {
+                Console.WriteLine($"{equal} {nonEqual} {people.Count}");
+            }
+            else
+            {
+                Console.WriteLine("No matches");
+            }
+        }
+    }
+}
