@@ -1,0 +1,28 @@
+using System.Text;
+
+namespace GenericBoxofInteger
+{
+    public class Box<T>
+    {
+        private T data;
+        
+        public Box(T data)
+        {
+            this.Data = data;
+        }
+
+        public T Data
+        {
+            get { return this.data; }
+            set { this.data = value; }
+        }
+
+        public override string ToString()
+        {
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.AppendLine($"{this.data.GetType().FullName}: {this.Data}");
+
+            return stringBuilder.ToString().TrimEnd();
+        }
+    }
+}
