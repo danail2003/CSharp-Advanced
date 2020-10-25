@@ -1,0 +1,26 @@
+using System;
+
+namespace GenericCountMethodDoubles
+{
+    public class Box<T> : IComparable<T>
+        where T : IComparable<T>
+    {
+        private T data;
+
+        public Box(T data)
+        {
+            this.Data = data;
+        }
+
+        public T Data
+        {
+            get { return this.data; }
+            set { this.data = value; }
+        }
+
+        public int CompareTo(T other)
+        {
+            return this.data.CompareTo(other);
+        }
+    }
+}
