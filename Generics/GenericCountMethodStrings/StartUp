@@ -1,0 +1,40 @@
+using System;
+using System.Collections.Generic;
+
+namespace GenericCountMethodStrings
+{
+    public class StartUp
+    {
+        static void Main()
+        {
+            int count = int.Parse(Console.ReadLine());
+            List<Box<string>> boxes = new List<Box<string>>();
+
+            for (int i = 0; i < count; i++)
+            {
+                string box = Console.ReadLine();
+                boxes.Add(new Box<string>(box));
+            }
+
+            string element = Console.ReadLine();
+
+            Console.WriteLine(CompareElements(boxes, element));
+        }
+
+        static int CompareElements<T>(IEnumerable<Box<T>> boxes, T element)
+            where T: IComparable<T>
+        {
+            int counter = 0;
+
+            foreach (var item in boxes)
+            {
+                if (item.CompareTo(element) > 0)
+                {
+                    counter++;
+                }
+            }
+
+            return counter;
+        }
+    }
+}
