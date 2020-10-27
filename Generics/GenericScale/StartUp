@@ -1,0 +1,16 @@
+using System;
+
+namespace GenericScale
+{
+    public class StartUp
+    {
+        static void Main()
+        {
+            EqualityScale<int> scale = new EqualityScale<int>(6, 6);
+            Console.WriteLine(scale.AreEqual());
+
+            EqualityScale<string> stringScale = new EqualityScale<string>("i am", "I am");
+            Console.WriteLine(stringScale.AreEqual());
+        }
+    }
+}
