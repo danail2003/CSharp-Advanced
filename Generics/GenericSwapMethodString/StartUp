@@ -1,0 +1,36 @@
+using System;
+using System.Linq;
+using System.Collections.Generic;
+
+namespace GenericSwapMethodString
+{
+    class StartUp
+    {
+        public static void Main()
+        {
+            int count = int.Parse(Console.ReadLine());
+            List<Data<string>> data = new List<Data<string>>();
+
+            for (int i = 0; i < count; i++)
+            {
+                string text = Console.ReadLine();
+                data.Add(new Data<string>(text));
+            }
+
+            int[] indexes = Console.ReadLine().Split().Select(int.Parse).ToArray();
+            Swap(data, indexes);
+
+            foreach (var item in data)
+            {
+                Console.WriteLine(item);
+            }
+        }
+
+        static void Swap<T>(List<Data<T>> data, int[] indexes)
+        {
+            Data<T> temp = data[indexes[0]];
+            data[indexes[0]] = data[indexes[1]];
+            data[indexes[1]] = temp;
+        }
+    }
+}
