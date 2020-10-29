@@ -1,0 +1,41 @@
+using System;
+
+namespace Threeuple
+{
+    class StartUp
+    {
+        static void Main()
+        {
+            string[] nameAndAdress = Console.ReadLine().Split();
+            string[] nameAndDrunk = Console.ReadLine().Split();
+            string[] nameAndBank = Console.ReadLine().Split();
+
+            string name = nameAndAdress[0] + " " + nameAndAdress[1];
+            bool isDrunk = false;
+
+            string town;
+            if (nameAndAdress.Length == 5)
+            {
+                town = nameAndAdress[3] + " " + nameAndAdress[4];
+            }
+            else
+            {
+                town = nameAndAdress[3];
+            }
+
+            if (nameAndDrunk[2] == "drunk")
+            {
+                isDrunk = true;
+            }
+
+            Threeuple<string, string, string> firstItem = new Threeuple<string, string, string>(name, nameAndAdress[2], town);
+            Console.WriteLine(firstItem);
+
+            Threeuple<string, string, bool> secondItem = new Threeuple<string, string, bool>(nameAndDrunk[0], nameAndDrunk[1], isDrunk);
+            Console.WriteLine(secondItem);
+
+            Threeuple<string, double, string> thirdItem = new Threeuple<string, double, string>(nameAndBank[0], double.Parse(nameAndBank[1]), nameAndBank[2]);
+            Console.WriteLine(thirdItem);
+        }
+    }
+}
