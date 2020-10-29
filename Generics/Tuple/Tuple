@@ -1,0 +1,36 @@
+using System.Text;
+
+namespace Tuple
+{
+    public class Tuple<T1, T2>
+    {
+        private T1 firstItem;
+        private T2 secondItem;
+
+        public Tuple(T1 firstItem, T2 secondItem)
+        {
+            this.FirstItem = firstItem;
+            this.SecondItem = secondItem;
+        }
+
+        public T1 FirstItem
+        {
+            get { return this.firstItem; }
+            set { this.firstItem = value; }
+        }
+
+        public T2 SecondItem
+        {
+            get { return this.secondItem; }
+            set { this.secondItem = value; }
+        }
+
+        public override string ToString()
+        {
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.AppendLine($"{this.FirstItem} -> {this.SecondItem}");
+
+            return stringBuilder.ToString().TrimEnd();
+        }
+    }
+}
