@@ -1,0 +1,24 @@
+using System;
+
+namespace Tuple
+{
+    public class StartUp
+    {
+        static void Main()
+        {
+            string[] nameAndAdress = Console.ReadLine().Split();
+            string[] nameAndBeer = Console.ReadLine().Split();
+            string[] intAndDouble = Console.ReadLine().Split();
+            string name = nameAndAdress[0] + " " + nameAndAdress[1];
+
+            Tuple<string, string> tuple = new Tuple<string, string>(name, nameAndAdress[2]);
+            Console.WriteLine(tuple);
+
+            Tuple<string, string> tuple2 = new Tuple<string, string>(nameAndBeer[0], nameAndBeer[1]);
+            Console.WriteLine(tuple2);
+
+            Tuple<string, string> tuple3 = new Tuple<string, string>(intAndDouble[0], intAndDouble[1]);
+            Console.WriteLine(tuple3);
+        }
+    }
+}
