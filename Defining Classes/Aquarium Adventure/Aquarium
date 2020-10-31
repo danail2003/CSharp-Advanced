@@ -1,0 +1,88 @@
+namespace AquariumAdventure
+{
+    using System.Text;
+    using System.Linq;
+    using System.Collections.Generic;
+
+    public class Aquarium
+    {
+        private List<Fish> fishInPool;
+        private string name;
+        private int capacity;
+        private int size;
+
+        public Aquarium(string name, int capacity, int size)
+        {
+            this.Name = name;
+            this.Capacity = capacity;
+            this.Size = size;
+            this.FishInPool = new List<Fish>();
+        }
+
+        public List<Fish> FishInPool
+        {
+            get { return this.fishInPool; }
+            set { this.fishInPool = value; }
+        }
+
+        public string Name
+        {
+            get { return this.name; }
+            set { this.name = value; }
+        }
+
+        public int Capacity
+        {
+            get { return this.capacity; }
+            set { this.capacity = value; }
+        }
+
+        public int Size
+        {
+            get { return this.size; }
+            set { this.size = value; }
+        }
+
+        public void Add(Fish fish)
+        {
+            if(!fishInPool.Contains(fish) && fishInPool.Count < Capacity)
+            {
+                this.fishInPool.Add(fish);
+            }
+        }
+
+        public bool Remove(string name)
+        {
+            foreach (var fish in this.fishInPool)
+            {
+                if (fish.Name == name)
+                {
+                    this.fishInPool.Remove(fish);
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        public Fish FindFish(string name)
+        {
+            Fish fish = this.fishInPool.FirstOrDefault(x => x.Name == name);
+
+            return fish;
+        }
+
+        public string Report()
+        {
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.AppendLine($"Aquarium: {this.Name} ^ Size: {this.Size}");
+
+            foreach (var fish in fishInPool)
+            {
+                stringBuilder.AppendLine(fish.ToString());
+            }
+
+            return stringBuilder.ToString().TrimEnd();
+        }
+    }
+}
