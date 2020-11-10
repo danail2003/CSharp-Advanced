@@ -1,6 +1,6 @@
 using System;
-using System.Collections.Generic;
 using System.Linq;
+using System.Collections.Generic;
 
 namespace Cups_and_Bottles
 {
@@ -8,48 +8,56 @@ namespace Cups_and_Bottles
     {
         static void Main()
         {
-            int[] cups = Console.ReadLine().Split().Select(int.Parse).ToArray();
-            int[] bottles = Console.ReadLine().Split().Select(int.Parse).ToArray();
+            int[] sequenceOfCups = Console.ReadLine().Split().Select(int.Parse).ToArray();
+            int[] sequenceOfBottles = Console.ReadLine().Split().Select(int.Parse).ToArray();
 
-            Queue<int> allCups = new Queue<int>(cups);
-            Stack<int> allBottles = new Stack<int>(bottles);
-
+            Queue<int> cups = new Queue<int>(sequenceOfCups);
+            Stack<int> bottles = new Stack<int>(sequenceOfBottles);
             int wastedWater = 0;
-            bool isLeft = false;
-            int leftCup = 0;
 
-            while (allCups.Any() && allBottles.Any())
+            while (cups.Any() && bottles.Any())
             {
-                if (allBottles.Any() && allBottles.Peek() >= allCups.Peek())
+                if (bottles.Peek() < cups.Peek())
                 {
-                    wastedWater += allBottles.Pop() - allCups.Dequeue();
-                }
-                else if (allBottles.Any() && allBottles.Peek() < allCups.Peek())
-                {
-                    isLeft = true;
-                    leftCup = allCups.Dequeue() - allBottles.Pop();
-                }
+                    int diff = cups.Dequeue() - bottles.Pop();
 
-                if (isLeft)
-                {
-                    while (leftCup > 0 && allBottles.Any())
+                    while (diff > 0)
                     {
-                        leftCup -= allBottles.Pop();
+                        if (diff >= bottles.Peek())
+                        {
+                            diff -= bottles.Pop();
+                        }
+                        else
+                        {
+                            int bottle = bottles.Peek();
+                            wastedWater += bottles.Pop() - diff;
+                            diff -= bottle;
+
+                            if (diff < 0)
+                            {
+                                diff = 0;
+                            }
+                        }
                     }
-
-                    wastedWater += Math.Abs(leftCup);
                 }
-
-                isLeft = false;
+                else if (bottles.Peek() > cups.Peek())
+                {
+                    wastedWater += bottles.Pop() - cups.Dequeue();
+                }
+                else
+                {
+                    bottles.Pop();
+                    cups.Dequeue();
+                }
             }
 
-            if (!allCups.Any())
+            if (bottles.Any())
             {
-                Console.WriteLine($"Bottles: {string.Join(" ", allBottles)}");
+                Console.WriteLine($"Bottles: {string.Join(" ", bottles)}");
             }
-            else if (!allBottles.Any())
+            else if (cups.Any())
             {
-                Console.WriteLine($"Cups: {string.Join(" ", allCups)}");
+                Console.WriteLine($"Cups: {string.Join(" ", cups)}");
             }
 
             Console.WriteLine($"Wasted litters of water: {wastedWater}");
