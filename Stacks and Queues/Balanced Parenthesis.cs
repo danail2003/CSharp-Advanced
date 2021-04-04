@@ -26,25 +26,25 @@ namespace Balanced_Parenthesis
                 {
                     firstHalf.Push(paranthesis[i]);
                 }
-                else if(paranthesis[i] == ']')
+                else if (paranthesis[i] == ']')
                 {
-                    if(!firstHalf.Any() || firstHalf.Pop() != '[')
+                    if (!firstHalf.Any() || firstHalf.Pop() != '[')
                     {
                         isBalanced = false;
                         break;
                     }
                 }
-                else if(paranthesis[i] == '}')
+                else if (paranthesis[i] == '}')
                 {
-                    if(!firstHalf.Any() || firstHalf.Pop() != '{')
+                    if (!firstHalf.Any() || firstHalf.Pop() != '{')
                     {
                         isBalanced = false;
                         break;
                     }
                 }
-                else if(paranthesis[i] == ')')
+                else if (paranthesis[i] == ')')
                 {
-                    if(!firstHalf.Any() || firstHalf.Pop() != '(')
+                    if (!firstHalf.Any() || firstHalf.Pop() != '(')
                     {
                         isBalanced = false;
                         break;
