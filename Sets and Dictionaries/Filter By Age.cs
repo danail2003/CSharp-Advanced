@@ -58,7 +58,7 @@ namespace Filter_By_Age
                     Console.WriteLine(item.Value);
                 }
             }
-            else if(format == "name age")
+            else if (format == "name age")
             {
                 if (condition == "younger")
                 {
