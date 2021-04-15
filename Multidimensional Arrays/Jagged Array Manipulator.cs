@@ -80,7 +80,7 @@ namespace Jagged_Array_Manipulator
                     int column = int.Parse(token[2]);
                     int value = int.Parse(token[3]);
 
-                    if(row >= 0 && row < matrix.GetLength(0))
+                    if (row >= 0 && row < matrix.GetLength(0))
                     {
                         int colLength = matrix[row].Length;
                         
