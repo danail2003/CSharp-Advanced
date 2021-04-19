@@ -31,7 +31,7 @@ namespace Matrix_Shuffling
 
                 string[] parts = command.Split();
 
-                if(parts[0] != "swap" || parts.Length < 5 || parts.Length > 5 || int.Parse(parts[1]) < 0 || 
+                if (parts[0] != "swap" || parts.Length < 5 || parts.Length > 5 || int.Parse(parts[1]) < 0 || 
                    int.Parse(parts[1]) >= matrix.GetLength(0) || int.Parse(parts[2]) < 0 || int.Parse(parts[2]) >= matrix.GetLength(1)
                    || int.Parse(parts[3]) < 0 || int.Parse(parts[3]) >= matrix.GetLength(0) || int.Parse(parts[4]) < 0 || int.Parse(parts[4]) >= matrix.GetLength(1))
                 {
