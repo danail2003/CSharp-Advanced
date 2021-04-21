@@ -7,7 +7,7 @@ namespace Product_Shop
     {
         static void Main()
         {
-           SortedDictionary <string, Dictionary<string, double>> shopsPrices = new SortedDictionary <string, Dictionary<string, double>>();
+            SortedDictionary <string, Dictionary<string, double>> shopsPrices = new SortedDictionary <string, Dictionary<string, double>>();
             string command = Console.ReadLine();
 
             while (command != "Revision")
