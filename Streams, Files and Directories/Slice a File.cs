@@ -13,7 +13,7 @@ namespace Slice_a_File
             int parts = 4;
             List<string> files = new List<string>() { "Part-1", "Part-2", "Part-3", "Part-4" };
 
-            using(FileStream bigFile = new FileStream(file, FileMode.Open))
+            using (FileStream bigFile = new FileStream(file, FileMode.Open))
             {
                 long piece = (long)Math.Ceiling((double)bigFile.Length / parts);
 
@@ -21,7 +21,7 @@ namespace Slice_a_File
                 {
                     long currentSize = 0;
 
-                    using(FileStream createFile = new FileStream(files[i], FileMode.Create))
+                    using (FileStream createFile = new FileStream(files[i], FileMode.Create))
                     {
                         byte[] buffer = new byte[4096];
 
