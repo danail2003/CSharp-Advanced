@@ -14,7 +14,7 @@ namespace Line_Numbers
             {
                 string line = streamReader.ReadLine();
 
-                using(StreamWriter streamWriter = new StreamWriter("Output.txt"))
+                using (StreamWriter streamWriter = new StreamWriter("Output.txt"))
                 {
                     while (line != null)
                     {
